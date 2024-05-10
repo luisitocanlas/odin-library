@@ -26,6 +26,9 @@ myLibrary.push(book2);
 // Initialize
 browseLibrary();
 
+// Event listeners
+addButton.addEventListener('click', addBookToLibrary);
+
 // Functions
 function Book(name, author, genre, isRead) {
 	this.name = name;
@@ -80,7 +83,37 @@ function createBook(book) {
 }
 
 // add book item
-function addBookToLibrary() {}
+function addBookToLibrary() {
+	event.preventDefault();
+
+	if (validateForm()) {
+		const title = document.getElementById('title').value;
+		const author = document.getElementById('author').value;
+		const genre = document.getElementById('genre').value;
+		const isRead = document.getElementById('read').value === 'true';
+
+		const newBook = new Book(title, author, genre, isRead);
+
+		bookContainer.append(createBook(newBook));
+
+		document.querySelector('form').reset();
+	} else {
+		alert('Form validation failed');
+	}
+}
 
 // remove book item
 function removeBook() {}
+
+// form validation
+function validateForm() {
+	const title = document.getElementById('title').value;
+	const author = document.getElementById('author').value;
+	const genre = document.getElementById('genre').value;
+
+	if (!title || !author || !genre) {
+		return false;
+	}
+
+	return true;
+}

@@ -9,13 +9,15 @@ const myLibrary = [];
 const book1 = new Book(
 	'The Eye of The World',
 	'Robert Jordan',
-	'Science Fiction'
+	'Science Fiction',
+	'true'
 );
 
 const book2 = new Book(
 	'The End of Everything',
 	'Victor Davis Hanson',
-	'History'
+	'History',
+	'false'
 );
 
 myLibrary.push(book1);
@@ -25,10 +27,11 @@ myLibrary.push(book2);
 browseLibrary();
 
 // Functions
-function Book(name, author, genre) {
+function Book(name, author, genre, isRead) {
 	this.name = name;
 	this.author = author;
 	this.genre = genre;
+	this.isRead = isRead;
 }
 
 // loop through myLibrary array and display each book
@@ -53,15 +56,28 @@ function createBook(book) {
 	const p = document.createElement('p');
 	p.textContent = `${book.genre}`;
 
+	const checkBox = document.createElement('div');
+
+	const label = document.createElement('label');
+	label.setAttribute('for', 'is-read');
+	label.textContent = 'Read? ';
+
+	const input = document.createElement('input');
+	input.setAttribute('type', 'checkbox');
+	input.setAttribute('id', 'is-read');
+
+	if (`${book.isRead}` == 'true') {
+		input.setAttribute('checked', '');
+	}
+
+	checkBox.append(label, input);
+
 	const btn = document.createElement('button');
 	btn.setAttribute('type', 'button');
 	btn.setAttribute('id', 'remove-button');
 	btn.textContent = 'Remove';
 
-	div.append(h2);
-	div.append(h3);
-	div.append(p);
-	div.append(btn);
+	div.append(h2, h3, p, checkBox, btn);
 
 	return div;
 }

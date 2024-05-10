@@ -1,7 +1,7 @@
 @import url('./css-reset.css');
 
 * {
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 html,
@@ -15,7 +15,7 @@ body {
 
 	display: grid;
 	gap: 15px;
-	grid-template-columns: 4fr 1fr;
+	grid-template-columns: minmax(400px, 4fr) 1fr;
 	grid-template-rows: 60px 1fr 30px;
 }
 
@@ -30,6 +30,10 @@ main {
 	grid-column: 1 / 2;
 	grid-row: 2 / 3;
 
+	margin-top: 11px;
+	padding: 20px;
+	border: 1px solid black;
+
 	display: grid;
 	gap: 20px;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -38,9 +42,36 @@ main {
 	overflow: auto;
 }
 
+.book-item {
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 2fr 1fr 1fr 50px;
+	gap: 10px;
+	align-items: center;
+	justify-items: center;
+}
+
+.book-item button,
+.form-container button {
+	width: 120px;
+	height: 40px;
+}
+
 aside {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
+}
+
+.form-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(3, 1fr) 50px;
+	align-items: center;
+	justify-items: center;
 }
 
 footer {

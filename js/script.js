@@ -1,7 +1,6 @@
 // Variables
 const bookContainer = document.querySelector('.book-container');
 const addButton = document.querySelector('#add-button');
-const removeButton = document.querySelector('#remove-button');
 
 const myLibrary = [];
 
@@ -28,6 +27,13 @@ browseLibrary();
 
 // Event listeners
 addButton.addEventListener('click', addBookToLibrary);
+
+bookContainer.addEventListener('click', function (event) {
+	if (event.target.matches('#remove-button')) {
+		const bookItem = event.target.closest('.book-item');
+		bookItem.remove();
+	}
+});
 
 // Functions
 function Book(name, author, genre, isRead) {

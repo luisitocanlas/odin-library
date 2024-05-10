@@ -10,14 +10,14 @@ const book1 = new Book(
 	'The Eye of The World',
 	'Robert Jordan',
 	'Science Fiction',
-	'true'
+	true
 );
 
 const book2 = new Book(
 	'The End of Everything',
 	'Victor Davis Hanson',
 	'History',
-	'false'
+	false
 );
 
 myLibrary.push(book1);
@@ -65,10 +65,7 @@ function createBook(book) {
 	const input = document.createElement('input');
 	input.setAttribute('type', 'checkbox');
 	input.setAttribute('id', 'is-read');
-
-	if (`${book.isRead}` == 'true') {
-		input.setAttribute('checked', '');
-	}
+	input.checked = book.isRead;
 
 	checkBox.append(label, input);
 

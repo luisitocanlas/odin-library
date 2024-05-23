@@ -1,10 +1,19 @@
+// Book Class
+class Book {
+	constructor(name, author, genre, isRead) {
+		this.name = name;
+		this.author = author;
+		this.genre = genre;
+		this.isRead = isRead;
+	}
+}
+
 // Variables
 const bookContainer = document.querySelector('.book-container');
 const addButton = document.querySelector('#add-button');
 
 const myLibrary = [];
 
-//
 const book1 = new Book(
 	'The Eye of The World',
 	'Robert Jordan',
@@ -34,14 +43,6 @@ bookContainer.addEventListener('click', function (event) {
 		bookItem.remove();
 	}
 });
-
-// Functions
-function Book(name, author, genre, isRead) {
-	this.name = name;
-	this.author = author;
-	this.genre = genre;
-	this.isRead = isRead;
-}
 
 // loop through myLibrary array and display each book
 function browseLibrary() {
@@ -89,7 +90,7 @@ function createBook(book) {
 }
 
 // add book item
-function addBookToLibrary() {
+function addBookToLibrary(event) {
 	event.preventDefault();
 
 	if (validateForm()) {
@@ -100,6 +101,7 @@ function addBookToLibrary() {
 
 		const newBook = new Book(title, author, genre, isRead);
 
+		myLibrary.push(newBook);
 		bookContainer.append(createBook(newBook));
 
 		document.querySelector('form').reset();
@@ -107,9 +109,6 @@ function addBookToLibrary() {
 		alert('Form validation failed');
 	}
 }
-
-// remove book item
-function removeBook() {}
 
 // form validation
 function validateForm() {

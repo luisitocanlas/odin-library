@@ -105,20 +105,50 @@ function addBookToLibrary(event) {
 		bookContainer.append(createBook(newBook));
 
 		document.querySelector('form').reset();
+		clearValidationMessages();
 	} else {
-		alert('Form validation failed');
+		alert('Please fill in all fields correctly');
 	}
 }
 
 // form validation
 function validateForm() {
-	const title = document.getElementById('title').value;
-	const author = document.getElementById('author').value;
-	const genre = document.getElementById('genre').value;
+	const title = document.getElementById('title').value.trim();
+	const author = document.getElementById('author').value.trim();
+	const genre = document.getElementById('genre').value.trim();
 
-	if (!title || !author || !genre) {
-		return false;
+	let isValid = true;
+
+	clearValidationMessages();
+
+	if (!title) {
+		showValidationMessage('title-error', 'Title is required.');
+		isValid = false;
 	}
 
-	return true;
+	if (!author) {
+		showValidationMessage('author-error', 'Author is required.');
+		isValid = false;
+	}
+
+	if (!genre) {
+		showValidationMessage('genre-error', 'Genre is required.');
+		isValid = false;
+	}
+
+	return isValid;
+}
+
+function showValidationMessage(elementId, message) {
+	const errorElement = document.getElementById(elementId);
+	errorElement.textContent = message;
+	errorElement.style.display = 'block';
+}
+
+function clearValidationMessages() {
+	const errorElements = document.querySelectorAll('.error-message');
+	errorElements.forEach((element) => {
+		element.textContent = '';
+		element.style.display = 'none';
+	});
 }
